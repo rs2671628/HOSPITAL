@@ -1,0 +1,165 @@
+<% layout("/layouts/boilerplate") %>
+<h1 class="text-center">Bed Data</h1>
+    <div class="row">
+        <div class="cols-sm-8">
+    <form action="/listing" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+      <div class="row">
+        <div class="mb-3 col-sm-6">
+            <label for="available" class="form-label"><b>General avalable bed</b></label>
+            <input type="number" placeholder="available" name="listing[general.avaliable]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Lowprice.
+              </div>
+        </div>
+        
+        <div class="mb-3  col-sm-6">
+            <label for="capacity" class="form-label"><b>General Total bed</b></label>
+            <input placeholder="capacity" name="listing[general.capacity]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Highprice.
+              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-sm-6">
+            <label for="available" class="form-label"><b>Female avalable bed</b></label>
+            <input type="number" placeholder="available" name="listing[female.avaliable]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Lowprice.
+              </div>
+        </div>
+        
+        <div class="mb-3  col-sm-6">
+            <label for="capacity" class="form-label"><b>Female Total bed</b></label>
+            <input placeholder="capacity" name="listing[female.capacity]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Highprice.
+              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-sm-6">
+            <label for="available" class="form-label"><b>Cabin avalable bed</b></label>
+            <input type="number" placeholder="available" name="listing[cabin.avaliable]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Lowprice.
+              </div>
+        </div>
+        
+        <div class="mb-3  col-sm-6">
+            <label for="capacity" class="form-label"><b>Cabin Total bed</b></label>
+            <input placeholder="capacity" name="listing[cabin.capacity]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Highprice.
+              </div>
+        </div>
+        <h1>Hospital Information</h1>
+      </div>
+        <div class="mb-3 col-sm-8 ">
+            <label for="title" class="form-label"><b>Title</b></label>
+            <input type="text" placeholder="Write The hospital Name" name="listing[title]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Title.
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label"><b>Description</b></label>
+        
+            <textarea name="listing[description]" placeholder="write a description" class="form-control"required></textarea>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Description.
+              </div>
+        </div>
+       
+        <div class="mb-3">
+            <label for="image" class="form-label"><b>image/URL link</b></label>
+            <input type="file" name="listing[image]" class="form-control">
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid image.
+              </div>
+        </div>
+        
+        <div class="row">
+            <div class="mb-3 col-sm-6">
+                <label for="lowprice" class="form-label"><b>Low Price</b></label>
+                <input type="number" placeholder="low price" name="listing[lowprice]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                <div class="invalid-feedback">
+                    Please select a valid Lowprice.
+                  </div>
+            </div>
+            
+            <div class="mb-3  col-sm-6">
+                <label for="highprice" class="form-label"><b>High Price</b></label>
+                <input placeholder="high price" name="listing[highprice]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                <div class="invalid-feedback">
+                    Please select a valid Highprice.
+                  </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="mb-3 col-sm-8">
+                <label for="location" class="form-label"><b>Location</b></label>
+                <input type="text" placeholder="write the location" name="listing[location]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                <div class="invalid-feedback">
+                    Please select a valid Location.
+                  </div>
+            </div>
+            
+            <div class="mb-3 col-4">
+                <label for="country"><b>Country</b></label>
+                <input type="text" placeholder="country name" name="listing[country]" class="form-control" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                <div class="invalid-feedback">
+                    Please select a valid Country.
+                  </div>
+            </div>
+        </div>
+        <br/>
+        <div class="text-center">
+            <button class="btn btn-dark"><b>Submit</b></button>
+        </div>
+        <br/>
+    </form>
+</div>
+</div>
+

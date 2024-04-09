@@ -1,0 +1,47 @@
+<% layout("/layouts/boilerplate") %>
+    <!-- <form action="/listing/new" method="get">
+        <button>click</button>
+    </form> -->
+    <style>
+      .tax-toggle{
+        border: 1px solid black;
+        border-radius: 1rem;
+        height: 3.5rem;
+        padding: 1rem;
+        text-align: center;
+      }
+    </style>
+    <div class="form-check-reverse tax-toggle form-switch offset-8">
+      
+      <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+      <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+    </div>
+
+    <h2 class="text-center">All Hospital</h2>
+    <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-1 mt-3">
+      <% for(list of lists){ %>
+        <a href="/listing/<%= list._id %>" class="listing-link">
+        <div class="card col">
+            <img src="<%= list.image.url%>" class="card-img-top card-image-overlay" alt="listing_image" style="height: 17rem;">
+            <div class="card-body">
+              <h6 class="card-title"><b><%= list.title %></b></h6>
+              <p class="card-text">&#8377; <%= list.lowprice%> - <%= list.highprice%>/bed <i class="tax-info"> &nbsp; 18% GST</i></p>
+            </div>
+          </div>
+          <br/>
+        </a>
+        <% } %>
+    </div>
+    <script>
+      let taxswitch=document.getElementById("flexSwitchCheckDefault");
+      taxswitch.addEventListener("click",()=>{
+      let taxinfo=document.getElementsByClassName("tax-info");
+      for(info of taxinfo){
+        if(info.style.display!="inline"){
+        info.style.display="inline";
+        }else{
+          info.style.display="none";
+        }
+      }
+      })
+    </script>

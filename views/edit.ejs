@@ -1,0 +1,162 @@
+<% layout("/layouts/boilerplate") %>
+<div class="container">
+    <h1>Edit Data</h1>
+    <form action="/listing/<%= db._id %>?_method=PATCH" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+      <div class="row">
+        <div class="mb-3 col-sm-6">
+            <label for="available" class="form-label"><b>avalable bed</b></label>
+            <input value="<%= db.general.avaliable %>" type="number" placeholder="available" name="listing[general.avaliable]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Lowprice.
+              </div>
+        </div>
+        
+        <div class="mb-3  col-sm-6">
+            <label for="capacity" class="form-label"><b>Total bed</b></label>
+            <input value="<%= db.general.capacity %>" placeholder="capacity" name="listing[general.capacity]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Highprice.
+              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-sm-6">
+            <label for="available" class="form-label"><b>avalable bed</b></label>
+            <input value="<%= db.female.avaliable %>" type="number" placeholder="available" name="listing[female.avaliable]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Lowprice.
+              </div>
+        </div>
+        
+        <div class="mb-3  col-sm-6">
+            <label for="capacity" class="form-label"><b>Total bed</b></label>
+            <input value="<%= db.female.capacity %>" placeholder="capacity" name="listing[female.capacity]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Highprice.
+              </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3 col-sm-6">
+            <label for="available" class="form-label"><b>avalable bed</b></label>
+            <input value="<%= db.cabin.avaliable %>" type="number" placeholder="available" name="listing[cabin.avaliable]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Lowprice.
+              </div>
+        </div>
+        
+        <div class="mb-3  col-sm-6">
+            <label for="capacity" class="form-label"><b>Total bed</b></label>
+            <input value="<%= db.cabin.capacity %>" placeholder="capacity" name="listing[cabin.capacity]" class="form-control" required>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Highprice.
+              </div>
+        </div>
+      </div>
+        <div class="mb-3 col-sm-8 ">
+            <label for="title" class="form-label"><b>Title</b></label>
+            <input value="<%= db.title %>" placeholder="Write The hospital Name" name="listing[title]" class="form-control" required/>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Title.
+              </div>
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label"><b>Description</b></label>
+            <textarea name="listing[description]" placeholder="write a description" class="form-control"required><%= db.description %></textarea>
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid Description.
+              </div>
+        </div>
+        <div class="mb-3">
+            <img src="<%= originalUrl%>" alt="">
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label"><b>Upload new image : </b></label>
+            <input type="file"value="<%= db.image %>" name="listing[image]" class="form-control">
+            <div class="valid-feedback">
+                Looks good!
+              </div>
+            <div class="invalid-feedback">
+                Please select a valid image.
+              </div>
+        </div>
+        
+        <div class="row">
+            <div class="mb-3 col-sm-6">
+                <label for="lowprice" class="form-label"><b>Low Price</b></label>
+                <input type="number"value="<%= db.lowprice %>" placeholder="low price" name="listing[lowprice]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                <div class="invalid-feedback">
+                    Please select a valid Lowprice.
+                  </div>
+            </div>
+            
+            <div class="mb-3  col-sm-6">
+                <label for="highprice" class="form-label"><b>High Price</b></label>
+                <input  value="<%= db.highprice %>" placeholder="high price" name="listing[highprice]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                <div class="invalid-feedback">
+                    Please select a valid Highprice.
+                  </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="mb-3 col-sm-8">
+                <label for="location" class="form-label"><b>Location</b></label>
+                <input type="text" placeholder="write the location" value="<%= db.location %>" name="listing[location]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                <div class="invalid-feedback">
+                    Please select a valid Location.
+                  </div>
+            </div>
+            
+            <div class="mb-3 col-4">
+                <label for="country"><b>Country</b></label>
+                <input type="text" placeholder="country name" value="<%= db.country %>" name="listing[country]" class="form-control" required>
+                <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                <div class="invalid-feedback">
+                    Please select a valid Country.
+                  </div>
+            </div>
+        </div>
+        <br/>
+        <div class="text-center">
+            <button class="btn btn-outline-success"><b>Edit</b></button>
+        </div>
+        <br/>
+    </form>
+  </div>
