@@ -19,7 +19,6 @@ const flash=require("connect-flash");
 const User=require("./models/user.js");
 const passport = require("passport");
 const LocalStrategy=require("passport-local");
-
 const { isLogin, validateerror } = require("./middleware.js");
 app.engine("ejs",ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
@@ -27,8 +26,13 @@ app.use(methodOverrride("_method"));
 app.set("view engine","ejs");
 app.set("views",path.join(__dirname,"views"));
 app.use(express.urlencoded({extended:true}));
+const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000, // Increase timeout to 5 seconds
+  };
 async function main(){
-    await mongoose.connect(db_url);
+    await mongoose.connect(db_url,options);
 }
 main().then(()=>{
     console.log("connected to hospital Db");

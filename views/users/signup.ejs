@@ -1,48 +1,136 @@
 <% layout("/layouts/boilerplate") %>
-    <div class="row offset-3">
-        <div class="cols-sm-8">
-    <h1 class="text-center"></h1>
-    <form action="/signup" method="post" novalidate class="needs-validation">
-        <div class="mb-3 col-sm-6 ">
-            <label for="username" class="form-label"><b>Username</b></label>
-            <input type="text" placeholder="your username" name="username" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid username
-            </div>
+
+<!-- Styles for the form and responsiveness -->
+<style>
+  body {
+    background: linear-gradient(to right, #6a11cb, #2575fc); /* Background gradient */
+    color: #fff; /* Default text color */
+    font-family: 'Arial', sans-serif;
+  }
+
+  .form-container {
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px); /* Blur background */
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  .form-label {
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .btn-success {
+    width: 100%;
+    background: linear-gradient(to right, #00b09b, #96c93d);
+    border: none;
+    transition: background 0.3s ease-in-out, transform 0.3s ease-in-out;
+  }
+
+  .btn-success:hover {
+    background: linear-gradient(to right, #96c93d, #00b09b);
+    transform: scale(1.05);
+  }
+
+  .form-control:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.8);
+    border-color: #80bdff;
+  }
+
+  .text-center {
+    color: #fff; /* Ensure the text color is white for readability */
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @media (max-width: 768px) {
+    .form-container {
+      margin-top: 20px;
+      padding: 15px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .form-container {
+      margin-top: 10px;
+      padding: 10px;
+    }
+  }
+</style>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-10 form-container">
+      <h1 class="text-center">Sign Up</h1>
+      <form action="/signup" method="post" novalidate class="needs-validation">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" placeholder="your username" name="username" class="form-control" required>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please select a valid username</div>
         </div>
-        
-        <div class="mb-3 col-sm-6" >
-            <label for="email" class="form-label"><b>email</b></label>
-        
-            <input type="email" placeholder="write your email" name="email" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid email
-              </div>
+
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" placeholder="write your email" name="email" class="form-control" required>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please select a valid email</div>
         </div>
-       
-        <div class="mb-3 col-sm-6">
-            <label for="password" class="form-label"><b>Password</b></label>
-            <input type="text" placeholder="write your password" name="password" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid password
-              </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" placeholder="write your password" name="password" id="password" class="form-control" required>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Please select a valid password</div>
         </div>
-        <br/>
-        <div>
-            <button class="btn btn-success"><b>Sign up</b></button>
+
+        <div class="mb-3">
+          <label for="confirm_password" class="form-label">Confirm Password</label>
+          <input type="password" placeholder="confirm your password" name="confirm_password" id="confirm_password" class="form-control" required>
+          <div class="valid-feedback">Looks good!</div>
+          <div class="invalid-feedback">Passwords do not match</div>
         </div>
-        <br/>
-    </form>
-</div>
+
+        <button class="btn btn-success" type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
 </div>
 
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
 
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          var password = document.getElementById('password');
+          var confirm_password = document.getElementById('confirm_password');
+
+          if (password.value !== confirm_password.value) {
+            confirm_password.setCustomValidity('Passwords do not match');
+          } else {
+            confirm_password.setCustomValidity('');
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>

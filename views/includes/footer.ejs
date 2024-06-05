@@ -1,15 +1,76 @@
-<footer class="sticky-bottom">
+<!-- Styles for the footer -->
+<style>
+
+  
+    .f-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px; /* Space between elements */
+    }
+  
+    .f-info-socials i {
+      font-size: 1.5rem; /* Icon size */
+      margin: 0 10px; /* Space between icons */
+      transition: color 0.3s ease-in-out; /* Transition for color change */
+      cursor: pointer; /* Pointer cursor on hover */
+    }
+  
+    .f-info-socials i:hover {
+      color: #00b09b; /* Hover color */
+    }
+  
+    .facebook-color {
+      color: #3b5998;
+    }
+  
+    .instagram-color {
+      color: #e4405f;
+    }
+  
+    .linkedin-color {
+      color: #0e76a8;
+    }
+  
+    .f-info-brand {
+      font-size: 1.2rem; /* Brand font size */
+      font-weight: bold;
+      color: black; /* Brand font weight */
+    }
+  
+    .f-info-links a {
+      color: #fff; /* Link color */
+      margin: 0 10px; /* Space between links */
+      text-decoration: none; /* Remove underline */
+      transition: color 0.3s ease-in-out; /* Transition for color change */
+    }
+  
+    .f-info-links a:hover {
+      color: #00b09b; /* Hover color */
+    }
+  
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .f-info {
+        flex-direction: column; /* Stack elements vertically on mobile */
+      }
+    }
+  </style>
+  
+  <footer class="sticky-bottom">
     <div class="f-info">
-        <div class="f-info-socials">
-            <i class="fa-brands fa-facebook facebook-color"></i>
-            <i class="fa-brands fa-instagram instagram-color"></i>
-            <i class="fa-brands fa-linkedin linkedin-color"></i>
-        </div>
-        
-        <div class="f-info-brand">Rohit Singha Private Limited</div>
-        <div class="f-info-links">
-            <a href="/privacy">privacy</a>
-            <a href="/terms">terms</a>
-        </div>
+      <div class="f-info-socials">
+        <i class="fa-brands fa-facebook facebook-color"></i>
+        <i class="fa-brands fa-instagram instagram-color"></i>
+        <i class="fa-brands fa-linkedin linkedin-color"></i>
+      </div>
+  
+      <div class="f-info-brand">Rohit Singha Private Limited</div>
+  
+      <div class="f-info-links">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
     </div>
-</footer>
+  </footer>
+  

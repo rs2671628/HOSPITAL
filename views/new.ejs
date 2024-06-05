@@ -1,165 +1,182 @@
 <% layout("/layouts/boilerplate") %>
-<h1 class="text-center">Bed Data</h1>
-    <div class="row">
-        <div class="cols-sm-8">
-    <form action="/listing" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
-      <div class="row">
-        <div class="mb-3 col-sm-6">
-            <label for="available" class="form-label"><b>General avalable bed</b></label>
-            <input type="number" placeholder="available" name="listing[general.avaliable]" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid Lowprice.
-              </div>
-        </div>
-        
-        <div class="mb-3  col-sm-6">
-            <label for="capacity" class="form-label"><b>General Total bed</b></label>
-            <input placeholder="capacity" name="listing[general.capacity]" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid Highprice.
-              </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="mb-3 col-sm-6">
-            <label for="available" class="form-label"><b>Female avalable bed</b></label>
-            <input type="number" placeholder="available" name="listing[female.avaliable]" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid Lowprice.
-              </div>
-        </div>
-        
-        <div class="mb-3  col-sm-6">
-            <label for="capacity" class="form-label"><b>Female Total bed</b></label>
-            <input placeholder="capacity" name="listing[female.capacity]" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid Highprice.
-              </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="mb-3 col-sm-6">
-            <label for="available" class="form-label"><b>Cabin avalable bed</b></label>
-            <input type="number" placeholder="available" name="listing[cabin.avaliable]" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid Lowprice.
-              </div>
-        </div>
-        
-        <div class="mb-3  col-sm-6">
-            <label for="capacity" class="form-label"><b>Cabin Total bed</b></label>
-            <input placeholder="capacity" name="listing[cabin.capacity]" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid Highprice.
-              </div>
-        </div>
-        <h1>Hospital Information</h1>
-      </div>
-        <div class="mb-3 col-sm-8 ">
-            <label for="title" class="form-label"><b>Title</b></label>
-            <input type="text" placeholder="Write The hospital Name" name="listing[title]" class="form-control" required>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid Title.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bed Data Form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            transition: background 1s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin-top: 50px;
+        }
+        h1 {
+            color: #343a40;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 1px #fff;
+        }
+        .btn-custom {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .btn-custom:hover {
+            background-color: #495057;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 form-container">
+                <h1 class="text-center">Bed Data</h1>
+                <form action="/listing" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="mb-3 col-sm-6">
+                            <label for="available" class="form-label">General Total Bed</label>
+                            <input type="number" placeholder="Available" name="listing[general.available]" class="form-control" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid number.</div>
+                        </div>
+                        <div class="mb-3 col-sm-6">
+                            <label for="capacity" class="form-label">General Booked Bed</label>
+                            <input type="number" placeholder="Booked" name="listing[general.capacity]" class="form-control" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid number.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-sm-6">
+                            <label for="available" class="form-label">Female Total Bed</label>
+                            <input type="number" placeholder="Available" name="listing[female.available]" class="form-control" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid number.</div>
+                        </div>
+                        <div class="mb-3 col-sm-6">
+                            <label for="capacity" class="form-label">Female Booked Bed</label>
+                            <input type="number" placeholder="Booked" name="listing[female.capacity]" class="form-control" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid number.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-sm-6">
+                            <label for="available" class="form-label">Cabin Total Bed</label>
+                            <input type="number" placeholder="Available" name="listing[cabin.available]" class="form-control" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid number.</div>
+                        </div>
+                        <div class="mb-3 col-sm-6">
+                            <label for="capacity" class="form-label">Cabin Booked Bed</label>
+                            <input type="number" placeholder="Booked" name="listing[cabin.capacity]" class="form-control" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid number.</div>
+                        </div>
+                    </div>
+                    <h1 class="text-center">Hospital Information</h1>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" placeholder="Write the hospital name" name="listing[title]" class="form-control" required>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter a valid title.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea name="listing[description]" placeholder="Write a description" class="form-control" required></textarea>
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please enter a valid description.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image/URL Link</label>
+                        <input type="file" name="listing[image]" class="form-control">
+                        <div class="valid-feedback">Looks good!</div>
+                        <div class="invalid-feedback">Please select a valid image.</div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-sm-6">
+                            <label for="lowprice" class="form-label">Low Price</label>
+                            <input type="number" placeholder="Low price" name="listing[lowprice]" class="form-control" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid low price.</div>
+                        </div>
+                        <div class="mb-3 col-sm-6">
+                            <label for="highprice" class="form-label">High Price</label>
+                            <input type="number" placeholder="High price" name="listing[highprice]" class="form-control" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid high price.</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="mb-3 col-sm-8">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" placeholder="Write the location" name="listing[location]" class="form-control" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid location.</div>
+                        </div>
+                        <div class="mb-3 col-sm-4">
+                            <label for="country" class="form-label">Country</label>
+                            <input type="text" placeholder="Country name" name="listing[country]" class="form-control" required>
+                            <div class="valid-feedback">Looks good!</div>
+                            <div class="invalid-feedback">Please enter a valid country.</div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-custom"><b>Submit</b></button>
+                    </div>
+                </form>
             </div>
         </div>
-        
-        <div class="mb-3">
-            <label for="description" class="form-label"><b>Description</b></label>
-        
-            <textarea name="listing[description]" placeholder="write a description" class="form-control"required></textarea>
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid Description.
-              </div>
-        </div>
-       
-        <div class="mb-3">
-            <label for="image" class="form-label"><b>image/URL link</b></label>
-            <input type="file" name="listing[image]" class="form-control">
-            <div class="valid-feedback">
-                Looks good!
-              </div>
-            <div class="invalid-feedback">
-                Please select a valid image.
-              </div>
-        </div>
-        
-        <div class="row">
-            <div class="mb-3 col-sm-6">
-                <label for="lowprice" class="form-label"><b>Low Price</b></label>
-                <input type="number" placeholder="low price" name="listing[lowprice]" class="form-control" required>
-                <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                <div class="invalid-feedback">
-                    Please select a valid Lowprice.
-                  </div>
-            </div>
-            
-            <div class="mb-3  col-sm-6">
-                <label for="highprice" class="form-label"><b>High Price</b></label>
-                <input placeholder="high price" name="listing[highprice]" class="form-control" required>
-                <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                <div class="invalid-feedback">
-                    Please select a valid Highprice.
-                  </div>
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="mb-3 col-sm-8">
-                <label for="location" class="form-label"><b>Location</b></label>
-                <input type="text" placeholder="write the location" name="listing[location]" class="form-control" required>
-                <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                <div class="invalid-feedback">
-                    Please select a valid Location.
-                  </div>
-            </div>
-            
-            <div class="mb-3 col-4">
-                <label for="country"><b>Country</b></label>
-                <input type="text" placeholder="country name" name="listing[country]" class="form-control" required>
-                  <div class="valid-feedback">
-                    Looks good!
-                  </div>
-                <div class="invalid-feedback">
-                    Please select a valid Country.
-                  </div>
-            </div>
-        </div>
-        <br/>
-        <div class="text-center">
-            <button class="btn btn-dark"><b>Submit</b></button>
-        </div>
-        <br/>
-    </form>
-</div>
-</div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // JavaScript for changing background images
+        const images = [
+            'url("https://source.unsplash.com/1600x900/?hospital")',
+            'url("https://source.unsplash.com/1600x900/?healthcare")',
+            'url("https://source.unsplash.com/1600x900/?medical")',
+            'url("https://source.unsplash.com/1600x900/?clinic")',
+            'url("https://source.unsplash.com/1600x900/?doctor")'
+        ];
+        let currentImageIndex = 0;
 
+        function changeBackgroundImage() {
+            document.body.style.backgroundImage = images[currentImageIndex];
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
+
+        setInterval(changeBackgroundImage, 5000); // Change image every 5 seconds
+        changeBackgroundImage(); // Initial call to set the first background image
+
+        // JavaScript for disabling form submissions if there are invalid fields
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+</body>
+</html>

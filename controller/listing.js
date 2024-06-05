@@ -7,6 +7,28 @@ module.exports.slashGet=async (req,res)=>{
     let lists=await listing.find({}).populate("reviews");
     res.render("listings.ejs",{lists});
 }
+module.exports.index = async (req, res) => {
+    try {
+        let search = '';
+        const dj=req.query.search;
+        console.log("dj"+dj)
+        if (req.query.search) {
+            search = req.query.search;
+        }
+        const allListings = await listing.find({
+            title: {
+                $regex: '.*' + search + '.*',
+                $options: 'i'
+            }
+        });
+
+        res.render("listing/listings.ejs", { allListings });
+    } catch (error) {
+        console.log("error", error);
+        res.status(500).send("An error occurred while fetching listings.");
+    }
+};
+
 module.exports.renderNew=async(req,res)=>{
     res.render("new.ejs");    
 }

@@ -1,161 +1,174 @@
 <% layout("/layouts/boilerplate") %>
- <script>
-  const mapToken="<%= process.env.MAP_TOKEN %>";
-  const loc=<%- JSON.stringify(db) %>;
- </script>
+<script>
+  const mapToken = "<%= process.env.MAP_TOKEN %>";
+  const loc = <%- JSON.stringify(db) %>;
+</script>
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
-  <style>
-    .rating {
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: center;
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+<style>
+  .rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+  .rating input {
+    display: none;
+  }
+  .rating label {
+    cursor: pointer;
+    color: #ffa500;
+    font-size: 30px;
+  }
+  .rating label:hover,
+  .rating label:hover ~ label,
+  .rating input:checked ~ label {
+    color: #ffd700;
+  }
+  .show-img {
+    max-width: 100%;
+    height: auto;
+  }
+  #map {
+    width: 100%;
+    height: 300px;
+  }
+  @media (max-width: 768px) {
+    #map {
+      height: 200px;
     }
-    .rating input {
-      display: none;
+  }
+  @media (max-width: 576px) {
+    #map {
+      height: 150px;
     }
-    .rating label {
-      cursor: pointer;
-      color: #ffa500;
-      font-size: 30px;
-    }
-    .rating label:hover,
-    .rating label:hover ~ label,
-    .rating input:checked ~ label {
-      color: #ffd700;
-    }
-    
-  </style>
-<div class="text-center">
+  }
+</style>
+<div class="container">
+  <div class="text-center">
     <h2 class="mb-3"><%= db.title %></h2>
-    <img src="<%= db.image.url %>" alt="" class="show-img">
-    <h6 class="mb-3">Owner : <%= db.owner.username %></h6>
-    <h5 class="mb-3">Description : <%= db.description %></h5>
+    <img src="<%= db.image.url %>" alt="" class="show-img mb-3">
+    <h6 class="mb-3">Owner: <%= db.owner.username %></h6>
+    <h5 class="mb-3"><%= db.description %></h5>
     <div class="row">
-      <h5 class="mb-3 col-6">Low Price : &#8377; <%= db.lowprice%></h5>
-      <h5 class="mb-3 col-6">High Price : &#8377; <%= db.highprice%></h5>
+      <div class="col-6">
+        <h5 class="mb-3">Low Price: &#8377; <%= db.lowprice %></h5>
+      </div>
+      <div class="col-6">
+        <h5 class="mb-3">High Price: &#8377; <%= db.highprice %></h5>
+      </div>
     </div>
     <div class="row">
-      <h5 class="mb-3 col-6">Location : <%= db.location %></h5>
-    <h5 class="mb-3 col-6">Country : <%= db.country%></h5>
+      <div class="col-6">
+        <h5 class="mb-3">Location: <%= db.location %></h5>
+      </div>
+      <div class="col-6">
+        <h5 class="mb-3">Country: <%= db.country %></h5>
+      </div>
     </div>
-    <div class="container">
+    <div class="container mb-4">
       <h2>Bed Table</h2>
       <table class="table table-bordered">
-          <thead>
-              <tr>
-                  <th>Bed Type</th>
-                  <th>Bed Availability</th>
-                  <th>Total Bed</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>General</td>
-                  <td><%= db.general.avaliable %></td>
-                  <td><%= db.general.capacity %></td>
-              </tr>
-              <tr>
-                  <td>Female</td>
-                  <td><%= db.female.avaliable %></td>
-                  <td><%= db.female.capacity %></td>
-              </tr>
-              <tr>
-                  <td>Cabin</td>
-                  <td><%= db.cabin.avaliable %></td>
-                  <td><%= db.cabin.capacity %></td>
-              </tr>
-          </tbody>
+        <thead>
+          <tr>
+            <th>Bed Type</th>
+            <th>Total Bed</th>
+            <th>Available Bed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>General</td>
+            <td><%= db.general.avaliable %></td>
+            <td><%= db.general.avaliable - db.general.capacity %></td>
+          </tr>
+          <tr>
+            <td>Female</td>
+            <td><%= db.female.avaliable %></td>
+            <td><%= db.female.avaliable - db.female.capacity %></td>
+          </tr>
+          <tr>
+            <td>Cabin</td>
+            <td><%= db.cabin.avaliable %></td>
+            <td><%= db.cabin.avaliable - db.cabin.capacity %></td>
+          </tr>
+        </tbody>
       </table>
-  </div>
-  <hr/>
-    <div class="col-md-6 offset-2">
-      <h3 class="offset-2">where you'll be</h3>
-      <div id="map">
-      </div>
-<script src="/js/map.js">
-</script>
-
     </div>
-
-  <% if(currUser && db.owner._id.equals(currUser._id)){ %>
-    <a href="/listing/<%= db._id %>/edit" class="fekash"><button class="btn btn-outline-primary cols-6 mb-3"><b>Edit</b></button></a>
-    <form action="/listing/<%= db._id %>?_method=DELETE" method="post">
-      <button class="btn btn-outline-danger mb-3 offset-16"><b>Delete</b></button>   
-  </form>
- <% } %>
-  
-  <div class="container mt-5">
-  <div class="row">
-    <div class="col-md-6 offset-md-3">
-      <hr>
-      <% if(currUser) {%>
-      <h2 class="text-center mb-4">Leave a Review</h2>
-      <form action="/listing/<%= db._id %>/reviews" method="post" novalidate class="needs-validation">
-        <div class="form-group">
-          <label for="review" class="form-label">Your Review:</label>
-          <textarea class="form-control" id="review" rows="3" name="review[description]" required></textarea>
-          <div class="invalid-feedback">please submit some comments</div>
+    <hr/>
+    <div class="col-md-8 offset-md-2 mb-4">
+      <h3 class="text-center">Where you'll be</h3>
+      <div id="map"></div>
+      <script src="/js/map.js"></script>
+    </div>
+    <% if(currUser && db.owner._id.equals(currUser._id)){ %>
+      <div class="d-flex justify-content-around mb-3">
+        <a href="/listing/<%= db._id %>/edit" class="btn btn-outline-primary"><b>Edit</b></a>
+        <form action="/listing/<%= db._id %>?_method=DELETE" method="post">
+          <button class="btn btn-outline-danger"><b>Delete</b></button>
+        </form>
+      </div>
+    <% } %>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <hr>
+          
+            <h2 class="text-center mb-4">Leave a Review</h2>
+            <form action="/listing/<%= db._id %>/reviews" method="post" novalidate class="needs-validation">
+              <div class="form-group">
+                <label for="review" class="form-label">Your Review:</label>
+                <textarea class="form-control" id="review" rows="3" name="review[description]" required></textarea>
+                <div class="invalid-feedback">Please submit some comments.</div>
+              </div>
+              <div>
+                <fieldset class="starability-slot">
+                  <legend>Give Rating:</legend>
+                  <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                  <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                  <label for="first-rate1" title="Terrible">1 star</label>
+                  <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                  <label for="first-rate2" title="Not good">2 stars</label>
+                  <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                  <label for="first-rate3" title="Average">3 stars</label>
+                  <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                  <label for="first-rate4" title="Very good">4 stars</label>
+                  <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                  <label for="first-rate5" title="Amazing">5 stars</label>
+                </fieldset>
+              </div>
+              <button type="submit" class="btn btn-outline-success mt-3">Submit Review</button>
+            </form>
+          
         </div>
-          <!-- <label for="rating" class="form-label">Rating:</label>
-          <input 
-          type="radio"
-          min="0"
-          max="5"
-          id="rating"
-          name="review[rating]"
-          class="form-range form-control"
-          required> -->
-          <div>
-            <div>
-          <fieldset class="starability-slot">
-            <legend>give rating:</legend>
-            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
-            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
-            <label for="first-rate1" title="Terrible">1 star</label>
-            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
-            <label for="first-rate2" title="Not good">2 stars</label>
-            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
-            <label for="first-rate3" title="Average">3 stars</label>
-            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
-            <label for="first-rate4" title="Very good">4 stars</label>
-            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
-            <label for="first-rate5" title="Amazing">5 stars</label>
-          </fieldset>
+      </div>
+    </div>
+    <% if(db.reviews.length > 0) {%>
+      <div class="row mt-5">
+        <div class="col-12">
+          <h4>All Reviews:</h4>
+          <div class="row">
+            <% db.reviews.forEach((review) => { %>
+              <div class="col-md-6 col-lg-4 mb-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title"><%= review.author.username %></h5>
+                    <p class="starability-result ml-5" data-rating="<%= review.rating %>"></p>
+                    <p class="card-text"><%= review.description %></p>
+                    <% if(currUser && review.author._id.equals(currUser._id)){ %>
+                      <form action="/listing/<%= db._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
+                        <button class="btn btn-sm btn-dark">Delete</button>
+                      </form>
+                    <% } %>
+                  </div>
+                </div>
+              </div>
+            <% }) %>
           </div>
         </div>
-          <div class="invalid-feedback">please submit some comments</div>
-        <button type="submit" class="btn btn-outline-success">Submit Review</button>
-        
-      </form>
-      <% } %>
-    </div>
-  </div>
-</div>
-<br/>
-  <% if(db.reviews.length > 0) {%>
-  <div class="row">
-    <h4>ALL REVIEWS : </h4>
-  <br/>
-  <% for(let review of db.reviews) {%>
-    <div class="card col-sm-3">
-      <div class="card-body">
-        <h5 class="card-title"><%= review.author.username %></h5>
-        <p class="starability-result ml-5" data-rating=<%= review.rating %>>
-        </p>
-        <p class="card-text mb-3"><%= review.description %></p>
-        
       </div>
-      <% if(currUser && review.author._id.equals(currUser._id)){ %>
-      <form action="/listing/<%= db._id %>/reviews/<%= review._id %>?_method=DELETE" class="mb-3" method="post">
-        <button class="btn btn-sm btn-dark">Delete</button>
-      </form>
-      <% } %>
-    </div>
     <% } %>
   </div>
-  <% } %>
+</div>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</div>
